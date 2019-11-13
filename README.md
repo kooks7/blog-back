@@ -49,14 +49,14 @@
 | email 중복체크       | /auth/email      | GET    | email                            | result(B)                                                    |
 | 회원가입             | /auth/join       | POST   | name,email,password              | result(B)                                                    |
 | 메인페이지의 글      | /api/post        | GET    | tag,page                         | posts[{id, title, date, author, tags, comments}]             |
-| 메인페이지 왼쪽 태그 | /api/tags        | GET    |                                  | tags[{tag,posts}]                                            |
+| 메인페이지 왼쪽 태그 | /api/tag         | GET    |                                  | tags[{tag,posts}]                                            |
 | 글 상세              | /api/post/:id    | GET    | id                               | id, title, date, author, tags[{id,name}], contents, comments[{author, date, contents}] |
 | 글 쓰기              | /api/post        | POST   | title, tags, contents, token     | result(B)                                                    |
 | 글 수정              | /api/post/:id    | PATCH  | id, title, tags, contents, token | result(B)                                                    |
 | 글 삭제              | /api/post/:id    | DELETE | id, token                        | result(B)                                                    |
 | 댓글 쓰기            | /api/comment     | POST   | post-id, token, contents         | result(B)                                                    |
 | 댓글 삭제            | /api/comment/:id | DELETE | id, token,                       | result(B)                                                    |
-| 태그 검색            | /api/tag         | GET    | name                             | tag{id,name,posts}                                           |
+| 태그 검색            | /api/tag:name    | GET    | name                             | tag{id,name,posts}                                           |
 | 태그 만들기          | /api/tag         | POST   | name                             | tag{id,name,posts}                                           |
 
 ## DB

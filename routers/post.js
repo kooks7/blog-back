@@ -3,8 +3,14 @@ const router = express.Router();
 const auth = require("../common/auth")();
 const { Post, validatePost } = require("../models/post");
 const { Tag } = require("../models/tag");
+const wrapper = require("../common/wrapper");
 
-router.post("/", auth.authenticate(), async (req, res, next) => {
+router.post("/", auth.authenticate(), wrapper( async (req, res, next) => {
+  if(!req.user.admin){
+    res.json({error:'unauthorized'});
+    next();
+    return;
+  }
   const { title, contents, tags } = req.body;
   // tags: asd9125kasdgj341254 fasdklj2365kljAAA AKLSDJGAKL1351askldjg
   if (validatePost(req.body).error) {
@@ -28,6 +34,6 @@ router.post("/", auth.authenticate(), async (req, res, next) => {
   }
   res.json({ result: true });
   next();
-});
+}));
 
 module.exports = router;
