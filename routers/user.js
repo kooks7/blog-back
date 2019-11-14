@@ -4,8 +4,9 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const { User, validateUser } = require("../models/user");
 const { jwtSecret } = require("../common/jwt_config");
+const wrapper = require("../common/wrapper");
 
-router.post("/join", async (req, res, next) => {
+router.post("/join", wrapper( async (req, res, next) => {
   const { name, email, password } = req.body;
   if (validateUser(req.body).error) {
     //검증과정 통과 못하면
@@ -19,9 +20,9 @@ router.post("/join", async (req, res, next) => {
   const saveResult = await user.save();
   res.json({ result: true });
   next();
-});
+}));
 
-router.post("/login", async (req, res, next) => {
+router.post("/login", wrapper( async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email });
   if (!user) {
@@ -48,9 +49,9 @@ router.post("/login", async (req, res, next) => {
     res.json({ result: false });
     next();
   }
-});
+}));
 
-router.get("/email", async (req, res, next) => {
+router.get("/email", wrapper( async (req, res, next) => {
   const email = req.query.email;
   const user = await User.findOne({ email });
   if (user) {
@@ -59,6 +60,6 @@ router.get("/email", async (req, res, next) => {
     res.json({ result: true });
   }
   next();
-});
+}));
 
 module.exports = router;
