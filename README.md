@@ -55,6 +55,7 @@
 | 글 수정              | /api/post/:id    | PATCH  | id, title, tags, contents, token | result(B)                                                    |
 | 글 삭제              | /api/post/:id    | DELETE | id, token                        | result(B)                                                    |
 | 댓글 쓰기            | /api/comment     | POST   | post-id, token, contents         | result(B)                                                    |
+| 댓글 읽기            | /api/comment     | GET    | post_id                          | comments                                                     |
 | 댓글 삭제            | /api/comment/:id | DELETE | id, token,                       | result(B)                                                    |
 | 태그 검색            | /api/tag:name    | GET    | name                             | tag{id,name,posts}                                           |
 | 태그 만들기          | /api/tag         | POST   | name                             | tag{id,name,posts}                                           |

@@ -5,10 +5,12 @@ const { Post, validatePost } = require("../models/post");
 const { Tag } = require("../models/tag");
 const wrapper = require("../common/wrapper");
 
-router.post("/", auth.authenticate(), wrapper( async (req, res, next) => {
+router.post("/"
+, auth.authenticate(), // 토큰 검증
+ wrapper( async (req, res, next) => {
   if(!req.user.admin){
     res.json({error:'unauthorized'});
-    next();
+    next();s
     return;
   }
   const { title, contents, tags } = req.body;
